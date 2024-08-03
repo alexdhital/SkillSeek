@@ -1,0 +1,73 @@
+﻿@model List<ServiceAppointmentSystem.Models.ViewModels.AppointmentViewModel>
+
+@{
+    ViewData["Title"] = "Booked Appointments";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+                            <li class="breadcrumb-item">Appointments</li>
+                            <li class="breadcrumb-item active">Appointment Bookings</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Current Appointment Bookings</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach(var item in Model)
+        {
+            <div class="card" style="width: 98%">
+                <div class="row m-4">
+                    <div class="col-3">
+                        <h3 class="row ml-2">
+                            Booked Date
+                        </h3>
+                        <div class="row mb-4 ml-2">
+                            @item.BookedDate
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 class="row ms-2">
+                            Service
+                        </h3>
+                        <div class="row mb-4 ms-2">
+                            @item.Service
+                        </div>
+                        <h3 class="row ms-2">
+                            Request
+                        </h3>
+                        <div class="row mb-4 ml-2">
+                            @Html.Raw("<div class=\"ms-2\">" + @item.Request + "</div>")
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 class="row ml-2">
+                            Date of Appointment
+                        </h3>
+                        <div class="row mb-4 ml-2">
+                            @item.AppointedDate
+                        </div>
+                        <h3 class="row ml-2">
+                            Assigned Technician
+                        </h3>
+                        <div class="row mb-4 ml-2">
+                            @item.ProfessionalName
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

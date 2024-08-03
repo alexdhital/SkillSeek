@@ -1,0 +1,22 @@
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
+
+namespace ServiceAppointmentSystem.Models.Entities
+{
+    public class AppUser : IdentityUser
+    {
+        [Required]
+        public string FullName { get; set; }    
+
+        [Required]
+        public byte[] ProfileImage { get; set; }
+
+        [Display(Name = "City")]
+        public string CityAddress { get; set; }
+
+        [Display(Name = "Region")]
+        public string RegionName { get; set; }
+
+        public ICollection<Appointment>? Appointments { get; set; }
+    }
+}

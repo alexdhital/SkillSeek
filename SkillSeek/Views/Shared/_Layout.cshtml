@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Skill Seek</title>
+
+	<script src="~/assets/js/hyper-config.js"></script>
+    <link href="~/assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-style" />
+	<link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="shortcut icon" href="~/favicon.png" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/SkillSeek.styles.css" asp-append-version="true" />
+	
+	<!-- Select2 Plugins CSS -->
+    <link href="~/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- JS Tree CSS -->
+    <link href="~/assets/vendor/jstree/themes/default/style.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- Date Range Picker css -->
+    <link href="~/assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Bootstrap Timepicker css -->
+    <link href="~/assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App CSS -->
+    <link href="~/assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- Icons CSS -->
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+	
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+
+	<link href="~/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+	
+	<!-- Vendor js -->
+	<script src="~/assets/js/vendor.min.js"></script>
+	
+	<script src="~/assets/vendor/apexcharts/apexcharts.min.js"></script>
+	
+	<!-- Datatables CSS -->
+    <link href="~/assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<!-- ========== Top Login Information Bar Start ========== -->
+    <div class="navbar-custom">
+        <partial name="_LoginInfo"/>
+    </div>
+    <!-- ========== Top Login Information Bar End ========== -->
+
+    <!-- ========== Left Side Menu Bar Start ========== -->
+    <div class="leftside-menu menu-color">
+	    <partial name="_LeftSideBar"/>
+    </div>
+    
+    <div class="content-page">
+	    <div class="content">
+		    <div class="container">
+			    <div class="row">
+					@RenderBody()
+			    </div>
+		    </div>
+	    </div>
+	</div>
+
+    <footer class="footer">
+	    <div class="container-fluid">
+		    <div class="row">
+			    <div class="col-md-6">
+				    <script>document.write(new Date().getFullYear())</script> © Skill Seek
+			    </div>
+			    <div class="col-md-6">
+				    <div class="text-md-end footer-links d-none d-md-block">
+					    <a href="javascript: void(0);">About</a>
+					    <a href="javascript: void(0);">Support</a>
+					    <a href="javascript: void(0);">Contact Us</a>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </footer>
+	
+    <!-- Code Highlight js -->
+    <script src="~/assets/vendor/highlightjs/highlight.pack.min.js"></script>
+    <script src="~/assets/vendor/clipboard/clipboard.min.js"></script>
+    <script src="~/assets/js/hyper-syntax.js"></script>
+
+    <!-- Theme Config JS -->
+    <script src="~/assets/js/hyper-config.js"></script>
+    <script src="~/assets/vendor/sweet-alert/sweetalert2.css"></script>
+    
+	<!-- Bootstrap Datepicker JS -->
+    <script src="~/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    
+    <script src="~/assets/vendor/daterangepicker/moment.min.js"></script>  
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+	<!-- Datatables js -->
+    <script src="~/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://kit.fontawesome.com/1c1a57d0d0.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="https://cdn.tiny.cloud/1/gt87d8xmi9qqycaz7hv57wuyzd7nlsjusj1zcf8hu8hyve0q/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+	<!-- Bootstrap Datepicker Plugin js -->
+	<script src="~/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+	<!-- Select2 JS  -->
+	<script src="~/assets/vendor/select2/js/select2.min.js"></script>
+
+	<!-- jQuery Mask -->
+	<script src="~/assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+	<!-- App JS -->
+	<script src="~/assets/js/app.min.js"></script>
+
+	<script src="~/assets/vendor/sweet-alert/sweetalert2.js"></script>
+	<script src="~/assets/vendor/sweet-alert/sweetalert2.all.js"></script>
+	<script src="~/assets/vendor/sweet-alert/sweetalert2.all.min.js"></script>
+
+	<script src="~/assets/vendor/dropzone/min/dropzone.min.js"></script>
+	<script src="~/assets/js/ui/component.fileupload.js"></script>
+	<script src="~/assets/vendor/chart.js/chart.min.js"></script>
+
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<style>
+
+</style>

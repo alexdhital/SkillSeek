@@ -1,0 +1,108 @@
+﻿@page
+@model RegistrationsModel
+@{
+	ViewData["Title"] = "Professional Registration";
+}
+
+<partial name="_Notification" />
+
+<div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xxl-8 col-lg-5">
+				<div class="card">
+					<div class="card-body p-4">
+						<div class="text-center w-75 m-auto">
+							<h4 class="text-dark-50 text-center mt-0 fw-bold">Request a Registration</h4>
+							<p class="text-muted mb-4">Don't have an account? Create request your account, we'll get back to you in a couple of days </p>
+						</div>
+						<form id="registerForm" class="row" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+							<hr />
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+							<div class="col-12">
+								<div class="mb-3">
+									<label asp-for="Input.FullName" class="pb-2"></label>
+									<input asp-for="Input.FullName" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter your full name"/>
+									<span asp-validation-for="Input.FullName" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="mb-3">
+									<label asp-for="Input.Email" class="pb-2"></label>
+									<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter your email address"/>
+									<span asp-validation-for="Input.Email" class="text-danger"></span>
+								</div>
+								<div class="mb-3">
+									<label asp-for="Input.RegionName" class="pb-2"></label>
+									<input asp-for="Input.RegionName" class="form-control" aria-required="true" placeholder="Enter your region name"/>
+									<span asp-validation-for="Input.RegionName" class="text-danger"></span>
+								</div>
+								<div class="mb-3">
+									<label class="pb-2">Services</label>
+									<select asp-for="Input.Service" asp-items="@Model.Input.Services" class="form-select" >
+										<option disabled selected>Select a Service</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label class="pb-2">Profile Image</label>
+									<input asp-for="Input.ProfileImage" class="form-control" type="file" accept=".png,.jpg,.jpeg,.gif,.tif">
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="mb-3">
+									<label asp-for="Input.PhoneNumber" class="pb-2"></label>
+									<input asp-for="Input.PhoneNumber" class="form-control" aria-required="true" placeholder="Enter your phone number"/>
+									<span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+								</div>
+								<div class="mb-3">
+									<label asp-for="Input.CityAddress" class="pb-2"></label>
+									<input asp-for="Input.CityAddress" class="form-control" aria-required="true" placeholder="Enter your city address"/>
+									<span asp-validation-for="Input.CityAddress" class="text-danger"></span>
+								</div>
+								<div class="mb-3">
+									<label class="pb-2">Resume</label>
+									<input asp-for="Input.Resume" class="form-control" type="file" name="resume" accept="application/pdf">
+								</div>
+								<div class="mb-3">
+									<label class="pb-2">Certifications</label>
+									<input asp-for="Input.Certification" class="form-control" type="file" name="certification" accept="application/pdf">
+								</div>
+							</div>
+							<div class="col-12 text-center">
+								<button class="btn btn-primary" type="submit" onclick="submitForm()">Request a Registration</button>
+							</div>
+						</form>
+					</div> 
+				</div>
+				<div class="row mt-3">
+					<div class="col-12 text-center">
+						<p class="text-muted">Already have account? <a asp-area="Identity" asp-page="/Account/Login" class="text-muted ms-1"><b>Log In</b></a></p>
+					</div> 
+				</div>
+			</div> 
+		</div>
+	</div>
+</div>
+
+<script>
+    function submitForm() {
+        let fullName = document.getElementById('Input_FullName').value.trim();
+        let email = document.getElementById('Input_Email').value.trim();
+        let regionName = document.getElementById('Input_RegionName').value.trim();
+        let service = document.getElementById('Input_Service').value.trim();
+        let phoneNumber = document.getElementById('Input_PhoneNumber').value.trim();
+        let cityAddress = document.getElementById('Input_CityAddress').value.trim();
+        let profileImage = document.getElementById('Input_ProfileImage').value.trim();
+        let resume = document.getElementById('Input_Resume').value.trim();
+        let certification = document.getElementById('Input_Certification').value.trim();
+
+        if (fullName === '' || email === '' || regionName === '' || service === '' || phoneNumber === '' || cityAddress === '' || profileImage === '' || resume === '' || certification === '') {
+        } else {
+            document.getElementById('registerForm').submit();
+        }
+    }
+</script>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

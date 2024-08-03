@@ -1,0 +1,153 @@
+﻿@model ServiceAppointmentSystem.Models.ViewModels.ItemViewModel
+
+@{
+    ViewData["Title"] = "Upsert";
+    var title = Model.Item.Id != 0 ? "Edit an existing service" : "Create a new Service";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Administrator</a></li>
+                            <li class="breadcrumb-item">Products</li>
+                            <li class="breadcrumb-item active">Upsert</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">@title</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-6">
+                        <h4 class="text-primary">Products Module</h4>
+                    </div>
+                    <div class="pt-4">
+                        <div class="form-group row">
+                            <input asp-for="Item.Id" class="form-control" type="hidden" />
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-4 row">
+                                        <label asp-for="Item.Name" class="mb-2"></label>
+                                        <input asp-for="Item.Name" class="form-control ms-2" required/>
+                                        <span asp-validation-for="Item.Name" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-4 row">
+                                        <label asp-for="Item.Description" class="mb-2"></label>
+                                        <input asp-for="Item.Description" rows="3" class="form-control ms-2" required/>
+                                        <span asp-validation-for="Item.Description" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-4 row">
+                                        <label asp-for="Item.ImageURL" class="mb-2"></label>
+                                        <input type="file" id="uploadImage" onchange="readURL(this);" 
+                                               name="imageFile" class="form-control ms-2" accept="image/png, image/gif, image/jpeg" />
+                                        <span asp-validation-for="Item.ImageURL" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="row mt-4">
+                                        <div class="row border border-primary" style="min-height: 225px; width: 225px; margin: auto">
+                                            <img id="previewImage" src="@Model.Item.ImageURL" style="width: 225px; height: 225px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 col-6">
+                                <label asp-for="Item.ListPrice" class="mb-2"></label>
+                                <input asp-for="Item.ListPrice" class="form-control" />
+                                <span asp-validation-for="Item.ListPrice" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4 col-6">
+                                <label asp-for="Item.Price" class="mb-2"></label>
+                                <input asp-for="Item.Price" class="form-control" />
+                                <span asp-validation-for="Item.Price" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4 col-6">
+                                <label asp-for="Item.Price20" class="mb-2"></label>
+                                <input asp-for="Item.Price20" class="form-control" />
+                                <span asp-validation-for="Item.Price20" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4 col-6">
+                                <label asp-for="Item.Price50" class="mb-2"></label>
+                                <input asp-for="Item.Price50" class="form-control" />
+                                <span asp-validation-for="Item.Price50" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4 col-6">
+                                <label asp-for="Item.ServiceId" class="mb-2"></label>
+                                <select asp-for="Item.ServiceId" asp-items="@Model.ServiceList" class="form-select">
+                                    <option disabled selected>Select a Category</option>
+                                </select>
+                                <span asp-validation-for="Item.ServiceId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @if (Model.Item.Id != 0)
+                            {
+                                <div class="col-3">
+                                    <button type="submit" onclick="return ValidateInput()" class="btn btn-primary form-control">Update</button>
+                                </div>
+                                <div class="col-3">
+                                    <a asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-3">
+                                    <button type="submit" onclick="return ValidateInput()" class="btn btn-primary form-control">Create</button>
+                                </div>
+                                <div class="col-3">
+                                    <a asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function ValidateInput() {
+            if ($("#uploadImage").val() == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Picture not uploaded',
+                    text: 'Please input an image of the Item before continuing'
+                })
+                return false;
+            }
+            return true;
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#previewImage')
+                        .attr('src', e.target.result)
+                        .width(225)
+                        .height(225);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

@@ -1,0 +1,168 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ServiceAppointmentSystem.Models.Constants;
+
+@inject SignInManager<IdentityUser> SignInManager
+
+<a asp-area="User" asp-controller="Home" asp-action="Home" class="logo logo-light menu-color" style="background: #183A4A">
+    <span class="logo-lg">
+        <img src="~/favicon.png" alt="logo">
+    </span>
+    <span class="logo-sm">
+        <img src="~/favicon.png" alt="small logo" height="50">
+    </span>
+</a>
+
+<div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+    <i class="ri-checkbox-blank-circle-line align-middle"></i>
+</div>
+
+<div class="button-close-fullsidebar">
+    <i class="ri-close-fill align-middle"></i>
+</div>
+
+<div class="h-100" id="leftside-menu-container" data-simplebar>
+    <div class="leftbar-user">
+    </div>
+    <ul class="side-nav">
+        <li class="side-nav-title">Skill Seek</li>
+        <li class="side-nav-item">
+            <a asp-area="User" asp-controller="Home" asp-action="Home" class="side-nav-link">
+                <i class="mdi mdi-monitor-dashboard"></i>
+                <span> Home </span>
+            </a>
+        </li>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            if (User.IsInRole(Constants.Admin))
+            {
+                <li class="side-nav-item">
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="side-nav-link">
+                        <i class="mdi mdi-chart-line-stacked"></i>
+                        <span> Analytics </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="Admin" asp-controller="Service" asp-action="Index" class="side-nav-link">
+                        <i class="mdi mdi-book-education-outline"></i>
+                        <span> Services </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="Admin" asp-controller="Item" asp-action="Index" class="side-nav-link">
+                        <i class="ri-rocket-line"></i>
+                        <span> Inventory </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="side-nav-link">
+                        <i class="mdi mdi-order-bool-descending"></i>
+                        <span> Orders </span>
+                    </a>
+                </li>
+                <li class="side-nav-item nav-link">
+                    <a data-bs-toggle="collapse" href="#sidebar_professionals" aria-expanded="false" aria-controls="sidebar_professionals" class="side-nav-link">
+                        <i class="mdi mdi-seal"></i>
+                        <span> Professionals </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse menu-color" id="sidebar_professionals">
+                        <ul class="side-nav-second-level">
+                            <li>
+                                <a asp-area="Admin" asp-controller="Professional" asp-action="Index">
+                                    <span>
+                                        List of Professionals
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="Professional" asp-action="Professionals">
+                                    <span class="badge bg-danger text-white float-end">New</span>
+                                    <span>
+                                        Approvals
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item nav-link">
+                    <a data-bs-toggle="collapse" href="#sidebar_appointments" aria-expanded="false" aria-controls="sidebar_appointments" class="side-nav-link">
+                        <i class="uil-presentation-lines-alt"></i>
+                        <span> Appointments </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse menu-color" id="sidebar_appointments">
+                        <ul class="side-nav-second-level">
+                            <li>
+                                <a asp-area="Admin" asp-controller="Appointment" asp-action="Booking">
+                                    <span class="badge bg-danger text-white float-end">New</span>
+                                    <span>
+                                        Bookings
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="Appointment" asp-action="History">
+                                    <span>
+                                        History
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            }
+            else if (User.IsInRole(Constants.User))
+            {
+                <li class="side-nav-item nav-link">
+                    <a data-bs-toggle="collapse" href="#sidebar_appointments" aria-expanded="false" aria-controls="sidebar_appointments" class="side-nav-link">
+                        <i class="mdi mdi-account-hard-hat"></i>
+                        <span> Appointments </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse menu-color" id="sidebar_appointments">
+                        <ul class="side-nav-second-level">
+                            <li>
+                                <a asp-area="User" asp-controller="Appointment" asp-action="Index">
+                                    <span class="badge bg-danger text-white float-end">New</span>
+                                    <span>
+                                        History
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="User" asp-controller="Appointment" asp-action="Booked">
+                                    <span>
+                                        Current Bookings
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="User" asp-controller="Home" asp-action="Items" class="side-nav-link">
+                        <i class="uil-telescope"></i>
+                        <span> Purchases </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a asp-area="User" asp-controller="Cart" asp-action="Index" class="side-nav-link">
+                        <i class="mdi mdi-cart-arrow-right"></i>
+                        <span> Cart </span>
+                    </a>
+                </li>
+            }
+        }
+        else
+        {
+            
+            <li class="side-nav-item">
+                <a asp-area="Identity" asp-page="/Account/Registrations" class="side-nav-link">
+                    <i class="mdi mdi-book-education-outline"></i>
+                    <span> Become a Professional </span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

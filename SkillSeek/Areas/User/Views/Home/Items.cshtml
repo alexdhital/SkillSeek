@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ServiceAppointmentSystem.Models.Entities.Item>
+
+@{
+    ViewData["Title"] = "Service Items";
+}
+
+<partial name="_Notification" />
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+                            <li class="breadcrumb-item">Purchases</li>
+                            <li class="breadcrumb-item active">Service and Products</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Available Products</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="row pb-3">
+                @foreach (var item in Model)
+                { 
+                    <div class="col-lg-3 col-md-6">
+                        <div class="row p-2">
+                            <div class="col-12 p-1" style="border: 1px solid black; border-radius: 5px;">
+                                <div class="container-item">
+                                        <img src="@item.ImageURL" style="width:255px;height:300px;" class="card-img-top rounded image"/>
+                                    <div class="middle">
+                                        <div class="order-text ms-2">Buy Now</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="p-lg-3">
+                                        <p class="card-title h5 text-primary">@item.Name</p>
+                                    </div>
+                                    <div class="ps-3">
+                                        <p>List Price: <strike><b>Rs @item.ListPrice.ToString("C2")</b></strike></p>
+                                    </div>
+                                    <div class="ps-3">
+                                        <p>As Low as: <b>Rs @item.Price50.ToString("N2")</b></p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a asp-action="Details" class="btn btn-primary form-control" asp-route-itemID="@item.Id">
+                                        View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

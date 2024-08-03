@@ -1,0 +1,106 @@
+﻿@model ServiceAppointmentSystem.Models.Entities.Service
+
+@{
+    ViewData["Title"] = "Service";
+    var title = Model.Id != 0 ? "Edit an existing service" : "Create a new Service";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Administrator</a></li>
+                            <li class="breadcrumb-item">Services</li>
+                            <li class="breadcrumb-item active">Upsert</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">@title</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="row mb-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-6">
+                        <h4 class="text-primary">Service Module</h4>
+                    </div>
+                    <div class="col-8 pt-4">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Name"></label>
+                            </div>
+                            <div class="col-8 mb-4">
+                                <input asp-for="Id" class="form-control" type="hidden" />
+                                <input asp-for="Name" class="form-control" required/>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="Role"></label>
+                            </div>
+                            <div class="col-8 mb-4">
+                                <input asp-for="Role" class="form-control" required/>
+                                <span asp-validation-for="Role" class="text-danger"></span>
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="BasePrice"></label>
+                            </div>
+                            <div class="col-8 mb-4">
+                                <input asp-for="BasePrice" class="form-control" required/>
+                                <span asp-validation-for="BasePrice" class="text-danger"></span>
+                            </div>
+                            <div class="col-4">
+                                <label asp-for="Description"></label>
+                            </div>
+                            <div class="col-8 mb-4">
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-8 offset-4">
+                                @if (Model.Id != 0)
+                                {
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary form-control" asp-route-id="@Model">Update</button>
+                                        </div>
+                                        <div class="col">
+                                            <a asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary form-control">Create</button>
+                                        </div>
+                                        <div class="col">
+                                            <a asp-action="Index" class="btn btn-primary form-control">Back to List</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        tinymce.init({
+			selector: 'textarea',
+		});
+    </script>
+}

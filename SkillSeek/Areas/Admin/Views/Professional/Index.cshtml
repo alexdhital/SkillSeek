@@ -1,0 +1,55 @@
+﻿@model List<ServiceAppointmentSystem.Models.ViewModels.ProfessionalViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Administrator</a></li>
+                            <li class="breadcrumb-item">Professionals</li>
+                            <li class="breadcrumb-item active">Index</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">List of Professionals</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row pb-3">
+            @foreach (var @item in Model)
+            { 
+                <div class="col-lg-3 col-md-6">
+                    <div class="row p-2">
+                        <div class="col-12 p-1" style="border: 1px solid black; border-radius: 5px;">
+                            <div class="container-item">
+                                <img id="profilePicture" style="width:260px;height:400px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(@item.ProfileImage))">
+                            </div>
+                            <div class="col">
+                                <div class="row ps-2 pt-2">
+                                    <p class="card-title h4 text-dark">@item.FullName</p>
+                                </div>
+                                <div class="row p-lg-2">
+                                    <b>@item.Specialist</b>
+                                </div>
+                            </div>
+                            <div>
+                                <a asp-action="Details" class="btn btn-dark form-control" asp-route-id="@item.UserId">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

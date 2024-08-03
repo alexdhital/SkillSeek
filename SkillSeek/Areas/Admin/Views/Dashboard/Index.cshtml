@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Analytics";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Administrator</a></li>
+                            <li class="breadcrumb-item active">Dashboard Analytics</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Dashboard Analytics</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-4">
+                <div class="card tilebox-one">
+                    <div class="card-body">
+                        <i class='uil uil-users-alt float-end'></i>
+                        <h6 class="text-uppercase mt-0">Active Users</h6>
+                        <h2 class="my-2" id="active-users-count">121</h2>
+                        <p class="mb-0 text-muted">
+                            <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 5.27%</span>
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card tilebox-one">
+                    <div class="card-body">
+                        <i class='uil uil-window-restore float-end'></i>
+                        <h6 class="text-uppercase mt-0">Appointment Counts</h6>
+                        <h2 class="my-2" id="active-views-count">560</h2>
+                        <p class="mb-0 text-muted">
+                            <span class="text-danger me-2"><span class="mdi mdi-arrow-down-bold"></span> 1.08%</span>
+                            <span class="text-nowrap">Since previous week</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="card cta-box overflow-hidden">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better outreach <i class="mdi mdi-arrow-right"></i></h3>
+                            </div>
+                            <img class="ms-3" src="~/assets/images/svg/email-campaign.svg" width="92" alt="Generic placeholder image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8">
+                <div class="card mb-3 h-100">
+                    <div class="card-body">
+                        <h5 class="text-center header-title">Session Overview</h5>
+                        <div dir="ltr">
+                            <div id="session-chart-area" class="apex-charts" data-colors="#727cf5,#6c757d"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let options = {
+        chart: {
+            height: 380,
+            type: "area"
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            width: 3,
+            curve: "smooth"
+        },
+        colors: ["#727cf5"], 
+        series: [{
+            name: "Appointments",
+            data: ['5', '8', '15', '25', '12'] 
+        }],
+        legend: {
+            offsetY: 5
+        },
+        xaxis: {
+            categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'],
+            title: {
+                text: 'Days'
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Appointments'
+            }
+        },
+        tooltip: {
+            fixed: {
+                enabled: false,
+                position: "topRight"
+            }
+        },
+        grid: {
+            borderColor: "#f1f3fa"
+        }
+    };
+
+    let sessionChart = new ApexCharts(document.querySelector("#session-chart-area"), options);
+    sessionChart.render();
+</script>

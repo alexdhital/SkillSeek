@@ -1,0 +1,30 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+
+namespace ServiceAppointmentSystem.Attribute;
+
+public class SessionTimeoutAttribute : ActionFilterAttribute, IActionFilter
+{
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    {
+        var userDetail = filterContext.HttpContext.Session.GetComplexData<object>("User");
+            
+        if (userDetail != null) return;
+            
+        if (filterContext.HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+        {
+            filterContext.Result = new ContentResult { Content = "308", StatusCode = 308 };
+        }
+        else
+        {
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+            {
+                action = "Login", 
+                controller = "Account"
+            }));
+            
+            base.OnActionExecuting(filterContext);
+        }
+
+    }
+}

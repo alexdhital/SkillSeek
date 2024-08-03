@@ -1,0 +1,97 @@
+﻿@model ServiceAppointmentSystem.Models.ViewModels.ProfessionalViewModel
+
+@{
+    ViewData["Title"] = "Professional Details";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Administrator</a></li>
+                            <li class="breadcrumb-item">Professionals</li>
+                            <li class="breadcrumb-item active">Details</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Professional Details and Descriptions</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-auto">
+				@if (Model.ProfileImage != null)
+				{
+					<img id="profilePicture" style="width:450px;height:500px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.ProfileImage))">
+				}
+				</div>
+				<div class="col-6 ml-2 mt-4">
+					<input asp-for="ProfessionalId" class="form-control" hidden/>
+					<input asp-for="UserId" class="form-control" hidden/>
+					<div class="form-group row mb-4">
+						<div class="col-5 mt-2">
+							<label asp-for="FullName">Full Name</label>
+						</div>
+						<div class="col-7">
+							<input asp-for="FullName" class="form-control" disabled/>
+							<span asp-validation-for="FullName" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="form-group row mb-4">
+						<div class="col-5 mt-2">
+							<label asp-for="EmailAddress">Email Address</label>
+						</div>
+						<div class="col-7">
+							<input asp-for="EmailAddress" class="form-control" disabled/>
+							<span asp-validation-for="EmailAddress" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="form-group row mb-4">
+						<div class="col-5 mt-2">
+							<label asp-for="PhoneNumber">Phone Number</label>
+						</div>
+						<div class="col-7">
+							<input asp-for="PhoneNumber" class="form-control" disabled/>
+							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="form-group row mb-3">
+						<div class="col-5">
+							<label hidden></label>
+						</div>
+						<div class="col-7">
+							<div class="row">
+								<div class="col-6">
+									<a class="btn btn-outline-primary mb-2 w-100" href="@Model.Resume" target="_blank">Resume</a>
+								</div>
+								<div class="col-6">
+									<a class="btn btn-outline-primary mb-2 w-100" href="@Model.Certification" target="_blank">Certification</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row mb-5">
+						<div class="col-5">
+							<label hidden></label>
+						</div>
+						<div class="col-7">
+							<div class="row">
+								<div class="col-12">
+									<a asp-action="Index" class="btn btn-dark form-control">Back to List</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

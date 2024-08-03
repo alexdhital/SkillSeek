@@ -1,0 +1,30 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+                            <li class="breadcrumb-item">Purchases</li>
+                            <li class="breadcrumb-item active">Order Details</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container row">
+    <div class="col-12 text-center mt-1">
+        <h4 class="text-primary text-center">Order Placed Successfully</h4>
+        <div class="text-bg-info mt-2">Your order number is @Model</div>
+    </div>
+</div>
